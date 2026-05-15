@@ -36,7 +36,7 @@
   --color-warm-gray-light: var(--warm-gray-light);
   --color-gold: var(--gold);
   --font-serif: "Cormorant Garamond", "Georgia", serif;
-  --font-display: "Bodoni Moda", "Didot", "Georgia", serif;
+  --font-display: "Playfair Display", "Georgia", serif;
   --font-body: "DM Sans", system-ui, sans-serif;
 }
 
