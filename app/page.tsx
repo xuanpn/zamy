@@ -179,8 +179,9 @@ export default function Home() {
                 <a key={l} href="#" className="nav-link text-[11px] tracking-[0.18em] text-charcoal-light hover:text-peony transition-colors font-medium">{l}</a>
               ))}
             </nav>
-            <Link href="/" className="absolute left-1/2 -translate-x-1/2">
-              <Image src="/logos/LOGOTYPE_REDWOOD.png" alt="ZAMY" width={110} height={36} className="h-7 lg:h-8 w-auto" priority />
+            <Link href="/" className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2">
+              <Image src="/logos/SUBMARK_GRADIENT.png" alt="ZAMY Peony" width={32} height={32} className="h-7 lg:h-8 w-auto" priority />
+              <Image src="/logos/LOGOTYPE_REDWOOD.png" alt="ZAMY" width={90} height={30} className="h-5 lg:h-6 w-auto" priority />
             </Link>
             <div className="flex items-center gap-6">
               <nav className="hidden lg:flex items-center gap-7">
@@ -292,27 +293,6 @@ export default function Home() {
           </Reveal>
         </section>
 
-        {/* ══════ VIDEO LOOKBOOK ══════ */}
-        <section className="bg-petal">
-          <div className="max-w-[1200px] mx-auto px-5 py-14 lg:py-20">
-            <Reveal>
-              <div className="text-center mb-10">
-                <p className="text-[10px] tracking-[0.3em] text-warm-gray uppercase mb-2">Video</p>
-                <h2 className="font-display text-3xl lg:text-4xl text-charcoal">LOOKBOOK VIDEO</h2>
-                <div className="w-10 h-[2px] bg-peony mx-auto mt-3" />
-              </div>
-            </Reveal>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              <Reveal>
-                <VideoCard src="/videos/1.mp4" title="Whisper Bloom — Summer '26" className="aspect-[9/16] max-h-[520px] lg:max-h-none" />
-              </Reveal>
-              <Reveal delay={150}>
-                <VideoCard src="/videos/2.mp4" title="La Mienne Collection" className="aspect-[9/16] max-h-[520px] lg:max-h-none" />
-              </Reveal>
-            </div>
-          </div>
-        </section>
-
         {/* ══════ BRAND STORY ══════ */}
         <section className="bg-white">
           <div className="max-w-[1200px] mx-auto px-5 py-14 lg:py-20">
@@ -332,6 +312,27 @@ export default function Home() {
                   <p className="text-[14px] text-warm-gray leading-[1.8] mb-8">Chúng tôi tin rằng thời trang không cần phải cầu kỳ để trở nên đẹp đẽ. Sự hoàn hảo nằm trong những điều giản dị nhất.</p>
                   <a href="#" className="inline-flex items-center gap-2 text-peony text-[11px] tracking-[0.18em] uppercase font-medium hover:gap-4 transition-all">Tìm hiểu thêm <ArrowRight size={13} /></a>
                 </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        {/* ══════ VIDEO LOOKBOOK ══════ */}
+        <section className="bg-petal">
+          <div className="max-w-[1200px] mx-auto px-5 py-14 lg:py-20">
+            <Reveal>
+              <div className="text-center mb-10">
+                <p className="text-[10px] tracking-[0.3em] text-warm-gray uppercase mb-2">Video</p>
+                <h2 className="font-display text-3xl lg:text-4xl text-charcoal">LOOKBOOK VIDEO</h2>
+                <div className="w-10 h-[2px] bg-peony mx-auto mt-3" />
+              </div>
+            </Reveal>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <Reveal>
+                <VideoCard src="/videos/1.mp4" title="Whisper Bloom — Summer '26" className="aspect-[9/16] max-h-[520px] lg:max-h-none" />
+              </Reveal>
+              <Reveal delay={150}>
+                <VideoCard src="/videos/2.mp4" title="La Mienne Collection" className="aspect-[9/16] max-h-[520px] lg:max-h-none" />
               </Reveal>
             </div>
           </div>
