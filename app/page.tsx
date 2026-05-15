@@ -89,36 +89,76 @@ function Reveal({ children, className = "", delay = 0 }: { children: React.React
   );
 }
 
-/* ───── VIDEO CARD ───── */
+/* ───── VIDEO LIGHTBOX ───── */
 
-function VideoCard({ src, title, className }: { src: string; title: string; className?: string }) {
-  const [playing, setPlaying] = useState(false);
+function VideoLightbox({ src, onClose }: { src: string; onClose: () => void }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    requestAnimationFrame(() => setVisible(true));
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") handleClose(); };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
+  }, []);
+
+  const handleClose = () => {
+    setVisible(false);
+    setTimeout(onClose, 300);
+  };
 
   return (
-    <div className={`video-card relative overflow-hidden rounded-sm cursor-pointer group ${className ?? ""}`} onClick={() => {
-      if (videoRef.current) {
-        if (playing) { videoRef.current.pause(); } else { videoRef.current.play(); }
-        setPlaying(!playing);
-      }
-    }}>
+    <div
+      className={`fixed inset-0 z-[100] flex items-center justify-center transition-all duration-300 ${visible ? "opacity-100" : "opacity-0"}`}
+      onClick={handleClose}
+    >
+      <div className="absolute inset-0 bg-charcoal/80 backdrop-blur-sm" />
+      <div
+        className={`relative z-10 w-[90vw] max-w-[480px] max-h-[85vh] transition-all duration-300 ${visible ? "scale-100 translate-y-0" : "scale-95 translate-y-4"}`}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={handleClose}
+          className="absolute -top-10 right-0 text-white/70 hover:text-white transition-colors text-sm tracking-wider flex items-center gap-1.5"
+        >
+          Đóng <X size={16} />
+        </button>
+        <div className="rounded-lg overflow-hidden shadow-2xl bg-black">
+          <video
+            ref={videoRef}
+            src={src}
+            className="w-full max-h-[85vh] object-contain"
+            controls
+            autoPlay
+            playsInline
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ───── VIDEO CARD ───── */
+
+function VideoCard({ src, title, className, onPlay }: { src: string; title: string; className?: string; onPlay: () => void }) {
+  const thumbRef = useRef<HTMLVideoElement>(null);
+
+  return (
+    <div className={`video-card relative overflow-hidden rounded-sm cursor-pointer group ${className ?? ""}`} onClick={onPlay}>
       <video
-        ref={videoRef}
+        ref={thumbRef}
         src={src}
         className="w-full h-full object-cover"
-        loop
         muted
         playsInline
         preload="metadata"
-        onEnded={() => setPlaying(false)}
       />
-      {!playing && (
-        <div className="absolute inset-0 bg-charcoal/20 flex items-center justify-center">
-          <div className="play-btn w-14 h-14 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg">
-            <Play size={20} className="text-peony ml-1" fill="currentColor" />
-          </div>
+      <div className="absolute inset-0 bg-charcoal/20 flex items-center justify-center group-hover:bg-charcoal/30 transition-colors">
+        <div className="play-btn w-16 h-16 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+          <Play size={22} className="text-peony ml-1" fill="currentColor" />
         </div>
-      )}
+      </div>
       <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-charcoal/60 to-transparent">
         <p className="text-white text-xs tracking-[0.1em] uppercase">{title}</p>
       </div>
@@ -132,6 +172,7 @@ export default function Home() {
   const [slide, setSlide] = useState(0);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [lightboxVideo, setLightboxVideo] = useState<string | null>(null);
 
   const next = useCallback(() => setSlide((s) => (s + 1) % heroSlides.length), []);
   const prev = useCallback(() => setSlide((s) => (s - 1 + heroSlides.length) % heroSlides.length), []);
@@ -329,10 +370,10 @@ export default function Home() {
             </Reveal>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <Reveal>
-                <VideoCard src="/videos/1.mp4" title="Whisper Bloom — Summer '26" className="aspect-[9/16] max-h-[520px] lg:max-h-none" />
+                <VideoCard src="/videos/1.mp4" title="Whisper Bloom — Summer '26" className="aspect-[9/16] max-h-[520px] lg:max-h-none" onPlay={() => setLightboxVideo("/videos/1.mp4")} />
               </Reveal>
               <Reveal delay={150}>
-                <VideoCard src="/videos/2.mp4" title="La Mienne Collection" className="aspect-[9/16] max-h-[520px] lg:max-h-none" />
+                <VideoCard src="/videos/2.mp4" title="La Mienne Collection" className="aspect-[9/16] max-h-[520px] lg:max-h-none" onPlay={() => setLightboxVideo("/videos/2.mp4")} />
               </Reveal>
             </div>
           </div>
@@ -446,6 +487,11 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* ══════ VIDEO LIGHTBOX ══════ */}
+      {lightboxVideo && (
+        <VideoLightbox src={lightboxVideo} onClose={() => setLightboxVideo(null)} />
+      )}
     </div>
   );
 }
