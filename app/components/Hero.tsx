@@ -10,16 +10,17 @@ const heroSlides = [
   { image: "/Banners/2.JPG" },
 ];
 
-const featured = {
-  badge: "Mẫu mới",
-  name: "Đầm linen Mira",
-  variant: "Bé sữa",
-  price: 689000,
-  image: "/products/4.jpg",
-};
+const featured = [
+  { badge: "Mẫu mới", name: "Đầm linen Mira", variant: "Bé sữa", price: 689000, image: "/products/4.jpg" },
+  { badge: "Hot", name: "Đầm Hoa Nhí Vintage", variant: "Hồng nhạt", price: 455000, image: "/products/3.jpg" },
+  { badge: "Bán chạy", name: "Áo Ren Thêu Nơ", variant: "Đen", price: 495000, image: "/products/1.jpg" },
+  { badge: "Đang sale", name: "Đầm Xếp Ly Cổ Thuyền", variant: "Nude", price: 585000, image: "/products/2.jpg" },
+];
 
 export function Hero() {
   const [slide, setSlide] = useState(0);
+  const [featIdx, setFeatIdx] = useState(0);
+  const [hovering, setHovering] = useState(false);
   const next = useCallback(() => setSlide((s) => (s + 1) % heroSlides.length), []);
   const prev = useCallback(() => setSlide((s) => (s - 1 + heroSlides.length) % heroSlides.length), []);
 
@@ -27,6 +28,13 @@ export function Hero() {
     const id = setInterval(next, 6000);
     return () => clearInterval(id);
   }, [next]);
+
+  // Auto-cycle featured badge — faster when hovering
+  useEffect(() => {
+    const interval = hovering ? 1500 : 3200;
+    const id = setInterval(() => setFeatIdx((i) => (i + 1) % featured.length), interval);
+    return () => clearInterval(id);
+  }, [hovering]);
 
   return (
     <section className="relative w-full aspect-[21/9] max-h-[640px] overflow-hidden bg-petal">
@@ -55,16 +63,57 @@ export function Hero() {
             </a>
           </div>
 
-          {/* Floating product badge */}
-          <a href="#new" className="hidden lg:flex items-center gap-4 self-end mb-12 ml-auto bg-white/95 backdrop-blur-sm rounded-sm p-3 pr-5 shadow-xl hover:scale-[1.02] transition-transform max-w-[280px]">
+          {/* Floating product badge — auto-cycles through featured items */}
+          <a
+            href="#new"
+            onMouseEnter={() => setHovering(true)}
+            onMouseLeave={() => setHovering(false)}
+            className="group hidden lg:flex items-center gap-4 self-end mb-12 ml-auto bg-white/95 backdrop-blur-sm rounded-sm p-3 pr-5 shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all duration-500 w-[290px] relative overflow-hidden"
+          >
+            {/* subtle shimmer line on hover */}
+            <span className="absolute inset-y-0 -left-1/3 w-1/3 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-20deg] -translate-x-full group-hover:translate-x-[400%] transition-transform duration-1000 pointer-events-none" />
+
+            {/* Image stack — fades between products */}
             <div className="relative w-16 h-20 shrink-0 overflow-hidden rounded-sm bg-petal">
-              <FadeImage src={featured.image} alt={featured.name} fill sizes="64px" className="object-cover" />
+              {featured.map((f, i) => (
+                <div
+                  key={i}
+                  className={`absolute inset-0 transition-all duration-700 ease-out ${
+                    i === featIdx ? "opacity-100 scale-100" : "opacity-0 scale-105"
+                  }`}
+                >
+                  <FadeImage src={f.image} alt={f.name} fill sizes="64px" className="object-cover" />
+                </div>
+              ))}
             </div>
-            <div>
-              <span className="inline-block bg-peony text-white text-[9px] tracking-[0.12em] uppercase px-2 py-0.5 mb-1.5 rounded-sm">{featured.badge}</span>
-              <p className="text-[13px] font-medium text-charcoal leading-tight mb-0.5">{featured.name}</p>
-              <p className="text-[11px] text-warm-gray mb-1">{featured.variant}</p>
-              <p className="text-[13px] text-peony font-semibold">{fmt(featured.price)}</p>
+
+            {/* Info stack — fades between products */}
+            <div className="relative flex-1 min-w-0 h-[68px]">
+              {featured.map((f, i) => (
+                <div
+                  key={i}
+                  className={`absolute inset-0 transition-all duration-500 ${
+                    i === featIdx ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1.5 pointer-events-none"
+                  }`}
+                >
+                  <span className="inline-block bg-peony text-white text-[9px] tracking-[0.12em] uppercase px-2 py-0.5 mb-1 rounded-sm">{f.badge}</span>
+                  <p className="text-[13px] font-medium text-charcoal leading-tight mb-0.5 truncate">{f.name}</p>
+                  <p className="text-[11px] text-warm-gray mb-1">{f.variant}</p>
+                  <p className="text-[13px] text-peony font-semibold">{fmt(f.price)}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Dots indicator */}
+            <div className="absolute bottom-1.5 right-3 flex gap-1">
+              {featured.map((_, i) => (
+                <span
+                  key={i}
+                  className={`h-1 rounded-full transition-all duration-500 ${
+                    i === featIdx ? "w-3 bg-peony" : "w-1 bg-peony/25"
+                  }`}
+                />
+              ))}
             </div>
           </a>
         </div>

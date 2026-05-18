@@ -25,8 +25,8 @@ export default function PageLoader() {
         <Image
           src="/logos/SUBMARK_GRADIENT.png"
           alt="ZAMY"
-          width={38}
-          height={38}
+          width={76}
+          height={76}
           className="zamy-loader-logo"
           priority
         />

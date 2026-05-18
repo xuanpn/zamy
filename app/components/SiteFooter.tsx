@@ -87,7 +87,7 @@ export function SiteFooter() {
         </div>
 
         <div className="border-t border-white/8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-[11px] text-white/40 tracking-wider">© 2026 Zamy · Made with care in Saigon</p>
+          <p className="text-[11px] text-white/40 tracking-wider">© 2026 Zamy — Casually Perfect</p>
           <p className="text-[11px] text-white/40 tracking-wider">GPKD: 0123456789 — Cấp ngày 01/06/2012</p>
         </div>
       </div>
