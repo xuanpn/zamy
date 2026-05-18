@@ -1,9 +1,8 @@
 import { Topbar, Header } from "./components/SiteHeader";
 import { Hero } from "./components/Hero";
-import { NewCollection } from "./components/NewCollection";
+import { Collections } from "./components/Collections";
 import { PeonyStory } from "./components/PeonyStory";
 import { DailyWardrobe } from "./components/DailyWardrobe";
-import { VideoLookbook } from "./components/VideoLookbook";
 import { WearInRealLife } from "./components/WearInRealLife";
 import { Newsletter } from "./components/Newsletter";
 import { Promises } from "./components/Promises";
@@ -16,10 +15,9 @@ export default function Home() {
       <Header />
       <Hero />
       <main>
-        <NewCollection />
+        <Collections />
         <PeonyStory />
         <DailyWardrobe />
-        <VideoLookbook />
         <WearInRealLife />
         <Newsletter />
         <Promises />
