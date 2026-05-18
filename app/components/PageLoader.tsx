@@ -1,29 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 export default function PageLoader() {
   const pathname = usePathname();
-  const [loading, setLoading] = useState(true); // show on first load
-  const [prevPath, setPrevPath] = useState(pathname);
+  const [loading, setLoading] = useState(true);
+  const isFirstLoad = useRef(true);
 
-  // First page load
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 800);
+    setLoading(true);
+    const duration = isFirstLoad.current ? 800 : 500;
+    isFirstLoad.current = false;
+    const timer = setTimeout(() => setLoading(false), duration);
     return () => clearTimeout(timer);
-  }, []);
-
-  // Route change
-  useEffect(() => {
-    if (pathname !== prevPath) {
-      setLoading(true);
-      setPrevPath(pathname);
-      const timer = setTimeout(() => setLoading(false), 600);
-      return () => clearTimeout(timer);
-    }
-  }, [pathname, prevPath]);
+  }, [pathname]);
 
   if (!loading) return null;
 
