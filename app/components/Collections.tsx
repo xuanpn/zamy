@@ -58,7 +58,7 @@ const collections = [
 export function Collections() {
   return (
     <section id="collections" className="bg-white">
-      <div className="max-w-[1360px] mx-auto px-5 py-16 lg:py-24">
+      <div className="max-w-[1360px] mx-auto px-5 py-14 lg:py-20">
         <Reveal>
           <div className="text-center mb-12 lg:mb-16 max-w-xl mx-auto">
             <p className="text-[10px] tracking-[0.4em] text-peony uppercase mb-4 font-medium">— Bộ sưu tập —</p>
@@ -87,7 +87,7 @@ export function Collections() {
 
             return (
               <Reveal key={c.name} delay={i * 80}>
-                <a href={c.href} className="group block relative aspect-[16/9] overflow-hidden rounded-sm bg-petal">
+                <a href={c.href} className="group block relative aspect-[5/2] overflow-hidden rounded-sm bg-petal">
                   <div className="absolute inset-0 transition-transform duration-[1100ms] ease-out group-hover:scale-[1.04]">
                     <FadeImage src={c.image} alt={c.name} fill sizes="(max-width:768px) 100vw, 50vw" className="object-cover" />
                   </div>
@@ -95,17 +95,17 @@ export function Collections() {
                   {/* Subtle gradient veil for legibility */}
                   <div className={`absolute inset-0 ${veil}`} />
 
-                  <div className={`absolute inset-0 flex items-center ${flexAlign} px-7 lg:px-10`}>
-                    <div className={`${textColor} max-w-[58%]`} style={textShadow}>
-                      <h3 className="zamy-script text-[44px] sm:text-5xl lg:text-[64px] leading-[1] mb-2 lg:mb-3">
+                  <div className={`absolute inset-0 flex items-center ${flexAlign} px-6 lg:px-9`}>
+                    <div className={`${textColor} max-w-[60%]`} style={textShadow}>
+                      <h3 className="zamy-script text-[38px] sm:text-[44px] lg:text-[54px] leading-[1] mb-1.5 lg:mb-2">
                         {c.name}
                       </h3>
-                      <p className={`text-[10px] tracking-[0.32em] uppercase ${subColor} mb-4 ${c.align === "right" ? "text-right" : ""}`}>
-                        <span className={`inline-block w-6 h-px ${dividerColor.replace("border-", "bg-")} align-middle mr-2.5`} />
+                      <p className={`text-[9.5px] tracking-[0.3em] uppercase ${subColor} mb-3 ${c.align === "right" ? "text-right" : ""}`}>
+                        <span className={`inline-block w-5 h-px ${dividerColor.replace("border-", "bg-")} align-middle mr-2`} />
                         {c.subtitle}
                       </p>
-                      <span className={`inline-flex items-center gap-2 text-[10px] tracking-[0.28em] uppercase font-medium border-b ${ctaBase} pb-1 transition-all group-hover:!text-peony group-hover:!border-peony group-hover:gap-3`}>
-                        Khám phá thêm <ArrowRight size={11} />
+                      <span className={`inline-flex items-center gap-1.5 text-[10px] tracking-[0.25em] uppercase font-medium border-b ${ctaBase} pb-1 transition-all group-hover:!text-peony group-hover:!border-peony group-hover:gap-2.5`}>
+                        Khám phá <ArrowRight size={10} />
                       </span>
                     </div>
                   </div>

@@ -15,34 +15,35 @@ export function Newsletter() {
         <Image src="/logos/SUBMARK_GRADIENT.png" alt="" width={500} height={500} className="w-[460px] h-auto invert brightness-200" />
       </div>
 
-      <div className="relative max-w-[820px] mx-auto px-5 py-20 lg:py-24 text-center text-white">
+      <div className="relative max-w-[920px] mx-auto px-5 py-10 lg:py-14 text-white">
         <Reveal>
-          <p className="text-[10px] tracking-[0.32em] uppercase text-white/80 mb-3 inline-flex items-center gap-2">
-            <Mail size={13} strokeWidth={1.5} /> Letter from Zamy
-          </p>
-          <h2 className="font-display text-3xl lg:text-[44px] italic mb-5 leading-tight">
-            Một lá thư nhỏ,<br/>gửi đến bạn vào sáng Chủ Nhật.
-          </h2>
-          <p className="text-[14px] lg:text-[15px] text-white/85 leading-relaxed max-w-xl mx-auto mb-8">
-            Gợi ý phong cách, mẫu mới và những câu chuyện đằng sau từng thiết kế.
-            Đăng ký để nhận <span className="font-medium text-white border-b border-white/50">voucher 50.000₫</span> cho đơn đầu tiên.
-          </p>
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-10">
+            {/* Left: headline */}
+            <div className="text-center lg:text-left lg:flex-1">
+              <p className="text-[10px] tracking-[0.32em] uppercase text-white/80 mb-2 inline-flex items-center gap-2 font-medium">
+                <Mail size={12} strokeWidth={1.6} /> Letter from Zamy
+              </p>
+              <h2 className="font-display text-2xl lg:text-[30px] italic leading-tight mb-1.5">
+                Một lá thư nhỏ, mỗi sáng Chủ Nhật.
+              </h2>
+              <p className="text-[12.5px] text-white/85 leading-relaxed">
+                Đăng ký nhận <span className="font-medium text-white border-b border-white/50">voucher 50.000₫</span> cho đơn đầu tiên.
+              </p>
+            </div>
 
-          <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Email của bạn"
-              className="flex-1 bg-white/15 backdrop-blur-sm border border-white/30 px-5 py-3.5 text-[14px] text-white placeholder:text-white/60 focus:outline-none focus:border-white/70 focus:bg-white/20 rounded-sm transition-colors"
-              required
-            />
-            <button type="submit" className="bg-white text-peony hover:bg-charcoal hover:text-white px-7 py-3.5 text-[10px] tracking-[0.25em] uppercase font-medium transition-colors rounded-sm whitespace-nowrap">
-              Đăng ký nhận thư
-            </button>
-          </form>
-
-          <p className="text-[11px] text-white/60 mt-5">
-            Không spam. Hủy đăng ký bất kỳ lúc nào.
-          </p>
+            {/* Right: form */}
+            <form className="flex w-full lg:w-auto lg:min-w-[420px] max-w-md">
+              <input
+                type="email"
+                placeholder="Email của bạn"
+                className="flex-1 bg-white/15 backdrop-blur-sm border border-white/30 border-r-0 px-4 py-3 text-[13px] text-white placeholder:text-white/60 focus:outline-none focus:border-white/70 focus:bg-white/20 rounded-l-sm transition-colors"
+                required
+              />
+              <button type="submit" className="bg-white text-peony hover:bg-charcoal hover:text-white px-6 py-3 text-[10px] tracking-[0.22em] uppercase font-medium transition-colors rounded-r-sm whitespace-nowrap">
+                Đăng ký
+              </button>
+            </form>
+          </div>
         </Reveal>
       </div>
     </section>

@@ -101,45 +101,45 @@ export function Header() {
 
   return (
     <header className={`sticky top-0 z-50 bg-white transition-all duration-300 ${scrolled ? "header-scrolled" : ""}`}>
-      <div className="max-w-[1320px] mx-auto px-5">
-        <div className="flex items-center justify-between h-16 lg:h-[80px]">
+      <div className="max-w-[1360px] mx-auto px-5 lg:px-8 relative">
+        <div className="flex items-center h-16 lg:h-[72px] relative">
           {/* Mobile menu trigger */}
           <button className="lg:hidden text-charcoal" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
 
-          {/* Left nav (desktop) */}
-          <nav className="hidden lg:flex items-center gap-7 lg:order-1">
+          {/* Left nav (desktop) — takes equal space */}
+          <nav className="hidden lg:flex lg:flex-1 items-center gap-8">
             {leftLinks.map((l) => (
               <DesktopNavLink key={l.label} link={l} />
             ))}
           </nav>
 
-          {/* Logo (center on desktop) */}
-          <Link href="/" className="lg:order-2 lg:absolute lg:left-1/2 lg:-translate-x-1/2 flex items-center gap-2">
-            <Image src="/logos/SUBMARK_GRADIENT.png" alt="ZAMY Peony" width={32} height={32} className="h-7 lg:h-9 w-auto" priority />
-            <Image src="/logos/LOGOTYPE_REDWOOD.png" alt="ZAMY" width={90} height={30} className="h-5 lg:h-6 w-auto" priority />
+          {/* Logo (center, absolute on desktop) */}
+          <Link href="/" className="lg:absolute lg:left-1/2 lg:-translate-x-1/2 flex items-center gap-2 mx-auto lg:mx-0">
+            <Image src="/logos/SUBMARK_GRADIENT.png" alt="ZAMY Peony" width={32} height={32} className="h-7 lg:h-8 w-auto" priority />
+            <Image src="/logos/LOGOTYPE_REDWOOD.png" alt="ZAMY" width={90} height={30} className="h-5 lg:h-[22px] w-auto" priority />
           </Link>
 
-          {/* Right side: links + icons */}
-          <div className="flex items-center gap-6 lg:order-3">
-            <nav className="hidden lg:flex items-center gap-7">
+          {/* Right side: nav + icons — takes equal space, right-aligned */}
+          <div className="flex items-center gap-5 lg:flex-1 lg:justify-end ml-auto lg:ml-0">
+            <nav className="hidden lg:flex items-center gap-8">
               {rightLinks.map((l) => (
                 <DesktopNavLink key={l.label} link={l} />
               ))}
             </nav>
-            <div className="flex items-center gap-3.5">
-              <button className="text-charcoal hover:text-peony transition-colors" aria-label="Tìm kiếm"><Search size={18} strokeWidth={1.5} /></button>
+            <div className="flex items-center gap-3 lg:gap-4 lg:pl-2">
+              <button className="text-charcoal hover:text-peony transition-colors" aria-label="Tìm kiếm"><Search size={17} strokeWidth={1.5} /></button>
               <button className="hidden sm:flex items-center gap-1 text-charcoal hover:text-peony transition-colors text-[10px] tracking-[0.15em] font-medium" aria-label="Ngôn ngữ">
-                <Globe size={16} strokeWidth={1.5} /> VN
+                <Globe size={15} strokeWidth={1.5} /> VN
               </button>
-              <button className="hidden sm:block text-charcoal hover:text-peony transition-colors" aria-label="Tài khoản"><User size={18} strokeWidth={1.5} /></button>
+              <button className="hidden sm:block text-charcoal hover:text-peony transition-colors" aria-label="Tài khoản"><User size={17} strokeWidth={1.5} /></button>
               <button className="text-charcoal hover:text-peony transition-colors relative" aria-label="Yêu thích">
-                <Heart size={18} strokeWidth={1.5} />
+                <Heart size={17} strokeWidth={1.5} />
                 <span className="absolute -top-1 -right-1.5 w-3.5 h-3.5 bg-blush text-charcoal text-[8px] rounded-full flex items-center justify-center font-medium">5</span>
               </button>
               <button className="relative text-charcoal hover:text-peony transition-colors" aria-label="Giỏ hàng">
-                <ShoppingBag size={18} strokeWidth={1.5} />
+                <ShoppingBag size={17} strokeWidth={1.5} />
                 <span className="absolute -top-1 -right-1.5 w-3.5 h-3.5 bg-peony text-white text-[8px] rounded-full flex items-center justify-center">2</span>
               </button>
             </div>

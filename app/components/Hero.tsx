@@ -56,7 +56,7 @@ export function Hero() {
   }, [hovering]);
 
   return (
-    <section className="relative w-full aspect-[21/9] max-h-[640px] overflow-hidden bg-petal">
+    <section className="relative w-full aspect-[24/9] max-h-[520px] min-h-[360px] overflow-hidden bg-petal">
       {heroSlides.map((s, i) => (
         <div key={i} className={`hero-slide absolute inset-0 ${i === slide ? "active z-10" : "z-0"}`}>
           <FadeImage src={s.image} alt={s.title} fill sizes="100vw" className="object-cover object-center" priority={i === 0} />
@@ -68,26 +68,26 @@ export function Hero() {
 
       {/* Bottom-aligned strip: caption left, badge right */}
       <div className="absolute inset-x-0 bottom-0 z-20">
-        <div className="max-w-[1320px] mx-auto px-5 lg:px-10 pb-8 lg:pb-10 flex items-end justify-between gap-6">
+        <div className="max-w-[1360px] mx-auto px-5 lg:px-10 pb-6 lg:pb-8 flex items-end justify-between gap-6">
           {/* Caption bottom-left */}
           {heroSlides.map((s, i) => (
             <div
               key={i}
-              className={`text-white max-w-[460px] transition-all duration-700 ${
+              className={`text-white max-w-[420px] transition-all duration-700 ${
                 i === slide
                   ? "opacity-100 translate-y-0 relative"
                   : "opacity-0 translate-y-3 absolute pointer-events-none"
               }`}
             >
-              <p className="text-[10px] tracking-[0.4em] uppercase text-white/85 mb-3 font-medium" style={{ textShadow: "0 1px 6px rgba(0,0,0,0.4)" }}>
+              <p className="text-[10px] tracking-[0.38em] uppercase text-white/85 mb-2 font-medium" style={{ textShadow: "0 1px 6px rgba(0,0,0,0.4)" }}>
                 {s.eyebrow}
               </p>
-              <h1 className="font-display italic text-[26px] sm:text-3xl lg:text-[40px] mb-5 leading-[1.15]" style={{ textShadow: "0 2px 14px rgba(0,0,0,0.25)" }}>
+              <h1 className="font-display italic text-[22px] sm:text-[26px] lg:text-[32px] mb-4 leading-[1.2]" style={{ textShadow: "0 2px 14px rgba(0,0,0,0.25)" }}>
                 {s.title}
               </h1>
               <a
                 href={s.href}
-                className="inline-flex items-center gap-2.5 text-[10px] tracking-[0.3em] uppercase font-medium text-white border-b border-white/65 hover:text-peony hover:border-peony pb-1.5 transition-colors"
+                className="inline-flex items-center gap-2 text-[10px] tracking-[0.28em] uppercase font-medium text-white border-b border-white/65 hover:text-peony hover:border-peony pb-1 transition-colors"
               >
                 {s.cta} <ArrowRight size={11} />
               </a>

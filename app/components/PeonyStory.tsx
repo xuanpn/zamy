@@ -7,12 +7,22 @@ import { FadeImage, Reveal } from "./Shared";
 export function PeonyStory() {
   return (
     <section id="story" className="relative bg-gradient-to-br from-petal/60 via-cream to-blush-light/30 overflow-hidden">
-      {/* Decorative peony submark */}
-      <div className="absolute -right-20 -top-20 lg:-right-32 lg:top-10 opacity-[0.06] pointer-events-none">
-        <Image src="/logos/SUBMARK_GRADIENT.png" alt="" width={480} height={480} className="w-[280px] lg:w-[480px] h-auto" />
+      {/* Decorative peony — large, top-right, very faint */}
+      <div className="absolute -right-24 -top-32 lg:-right-40 lg:-top-24 opacity-[0.07] pointer-events-none select-none">
+        <Image src="/logos/SUBMARK_GRADIENT.png" alt="" width={560} height={560} className="w-[320px] lg:w-[560px] h-auto" style={{ transform: "rotate(-12deg)" }} />
       </div>
 
-      <div className="relative max-w-[1280px] mx-auto px-5 py-16 lg:py-24">
+      {/* Decorative peony — medium, bottom-left, rotated, even fainter */}
+      <div className="absolute -left-20 -bottom-24 lg:-left-28 lg:-bottom-32 opacity-[0.05] pointer-events-none select-none">
+        <Image src="/logos/SUBMARK_GRADIENT.png" alt="" width={420} height={420} className="w-[240px] lg:w-[420px] h-auto" style={{ transform: "rotate(35deg)" }} />
+      </div>
+
+      {/* Decorative peony — small accent, center-back, behind text */}
+      <div className="hidden lg:block absolute right-[18%] top-1/2 -translate-y-1/2 opacity-[0.04] pointer-events-none select-none">
+        <Image src="/logos/SUBMARK_GRADIENT.png" alt="" width={180} height={180} className="w-[180px] h-auto" style={{ transform: "rotate(15deg)" }} />
+      </div>
+
+      <div className="relative max-w-[1280px] mx-auto px-5 py-14 lg:py-20">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           <Reveal className="lg:col-span-5">
             <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
