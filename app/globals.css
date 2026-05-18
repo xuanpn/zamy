@@ -61,6 +61,23 @@ body {
   color: var(--charcoal);
 }
 
+/* Page loader - peony spin */
+@keyframes peony-rotate {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.08); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+.peony-spin img {
+  animation: peony-rotate 1.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+.page-loader {
+  animation: loader-fade-in 0.2s ease-out;
+}
+@keyframes loader-fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 /* Announcement marquee */
 @keyframes marquee {
   0% { transform: translateX(0); }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import PageLoader from "./components/PageLoader";
 
 export const metadata: Metadata = {
   title: "ZAMY — Casually Perfect | Thời Trang Nữ",
@@ -22,6 +23,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full w-full">
+        <PageLoader />
         {children}
       </body>
     </html>
