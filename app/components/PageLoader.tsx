@@ -11,7 +11,7 @@ export default function PageLoader() {
 
   useEffect(() => {
     setLoading(true);
-    const duration = isFirstLoad.current ? 800 : 500;
+    const duration = isFirstLoad.current ? 900 : 550;
     isFirstLoad.current = false;
     const timer = setTimeout(() => setLoading(false), duration);
     return () => clearTimeout(timer);
@@ -20,18 +20,23 @@ export default function PageLoader() {
   if (!loading) return null;
 
   return (
-    <div className="page-loader fixed inset-0 z-[200] bg-white flex flex-col items-center justify-center">
-      <div className="peony-spin relative w-16 h-16 mb-4">
+    <div className="page-loader fixed inset-0 z-[200] bg-cream/95 backdrop-blur-sm flex flex-col items-center justify-center">
+      <div className="zamy-loader">
         <Image
           src="/logos/SUBMARK_GRADIENT.png"
-          alt="Loading"
-          width={64}
-          height={64}
-          className="w-16 h-16"
+          alt="ZAMY"
+          width={38}
+          height={38}
+          className="zamy-loader-logo"
           priority
         />
+        <div className="zamy-orbit">
+          <span className="zamy-star" />
+        </div>
       </div>
-      <p className="text-[10px] tracking-[0.3em] text-warm-gray uppercase">Loading...</p>
+      <p className="mt-6 text-[9px] tracking-[0.45em] text-peony-dark uppercase font-serif italic opacity-70">
+        zamy
+      </p>
     </div>
   );
 }

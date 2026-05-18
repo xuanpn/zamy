@@ -61,21 +61,87 @@ body {
   color: var(--charcoal);
 }
 
-/* Page loader - peony spin */
-@keyframes peony-rotate {
-  0% { transform: rotate(0deg) scale(1); }
-  50% { transform: rotate(180deg) scale(1.08); }
-  100% { transform: rotate(360deg) scale(1); }
-}
-.peony-spin img {
-  animation: peony-rotate 1.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-}
+/* Page loader - shooting star orbiting peony logo */
 .page-loader {
-  animation: loader-fade-in 0.2s ease-out;
+  animation: loader-fade-in 0.25s ease-out;
 }
 @keyframes loader-fade-in {
   0% { opacity: 0; }
   100% { opacity: 1; }
+}
+
+/* Container: logo at center, orbit rotates around it */
+.zamy-loader {
+  position: relative;
+  width: 72px;
+  height: 72px;
+}
+.zamy-loader-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 38px;
+  height: 38px;
+  transform: translate(-50%, -50%);
+  /* Gentle breathing pulse */
+  animation: zamy-breathe 2.4s ease-in-out infinite;
+}
+@keyframes zamy-breathe {
+  0%, 100% { opacity: 0.92; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.04); }
+}
+
+/* The orbit wrapper rotates — everything inside follows */
+.zamy-orbit {
+  position: absolute;
+  inset: 0;
+  animation: zamy-spin 1.6s linear infinite;
+}
+
+/* Faint orbital ring */
+.zamy-orbit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(232, 196, 188, 0.18);
+}
+
+/* The trailing arc — quarter circle that fades into the star */
+.zamy-orbit::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid transparent;
+  border-top-color: rgba(196, 136, 122, 0.85);
+  border-right-color: rgba(221, 172, 163, 0.5);
+  filter: blur(0.3px);
+}
+
+/* The shooting star — bright dot at top of orbit */
+.zamy-star {
+  position: absolute;
+  top: -3.5px;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  margin-left: -3.5px;
+  background: radial-gradient(circle, #fff 0%, #F2DAD4 35%, #C4887A 75%, transparent 100%);
+  border-radius: 50%;
+  box-shadow:
+    0 0 4px rgba(255, 255, 255, 0.9),
+    0 0 10px rgba(232, 196, 188, 0.9),
+    0 0 18px rgba(196, 136, 122, 0.5);
+  animation: zamy-twinkle 1.6s ease-in-out infinite;
+}
+@keyframes zamy-twinkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.15); }
+}
+
+@keyframes zamy-spin {
+  to { transform: rotate(360deg); }
 }
 
 /* Announcement marquee */
