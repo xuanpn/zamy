@@ -6,7 +6,6 @@ export const metadata: Metadata = {
   title: "ZAMY — Casually Perfect | Thời Trang Nữ",
   description:
     "ZAMY - Thương hiệu thời trang nữ cao cấp. Casually Perfect since 2012. Đầm, váy, áo và phụ kiện thời trang.",
-  icons: { icon: "/logos/SUBMARK_REDWOOD.png" },
 };
 
 export default function RootLayout({
