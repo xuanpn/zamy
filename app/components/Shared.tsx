@@ -78,18 +78,21 @@ export function VideoLightbox({ src, onClose }: { src: string; onClose: () => vo
 }
 
 /* VIDEO CARD */
-export function VideoCard({ src, title, className, onPlay }: { src: string; title: string; className?: string; onPlay: () => void }) {
+export function VideoCard({ src, title, className, onPlay }: { src: string; title?: string; className?: string; onPlay: () => void }) {
   return (
     <div className={`video-card relative overflow-hidden rounded-sm cursor-pointer group ${className ?? ""}`} onClick={onPlay}>
-      <video src={src} className="w-full h-full object-cover" muted playsInline preload="metadata" />
-      <div className="absolute inset-0 bg-charcoal/20 flex items-center justify-center group-hover:bg-charcoal/30 transition-colors">
-        <div className="play-btn w-16 h-16 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-          <Play size={22} className="text-peony ml-1" fill="currentColor" />
+      <video src={src} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" muted playsInline preload="metadata" />
+      <div className="absolute inset-0 bg-gradient-to-t from-charcoal/30 via-transparent to-transparent transition-opacity duration-500 group-hover:opacity-60 opacity-100" />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="play-btn w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+          <Play size={20} className="text-peony ml-0.5" fill="currentColor" />
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-charcoal/60 to-transparent">
-        <p className="text-white text-xs tracking-[0.1em] uppercase">{title}</p>
-      </div>
+      {title && (
+        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-charcoal/60 to-transparent">
+          <p className="text-white text-xs tracking-[0.1em] uppercase">{title}</p>
+        </div>
+      )}
     </div>
   );
 }

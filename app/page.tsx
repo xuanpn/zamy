@@ -5,7 +5,6 @@ import { PeonyStory } from "./components/PeonyStory";
 import { DailyWardrobe } from "./components/DailyWardrobe";
 import { VideoLookbook } from "./components/VideoLookbook";
 import { WearInRealLife } from "./components/WearInRealLife";
-import { CustomerFeedback } from "./components/CustomerFeedback";
 import { Newsletter } from "./components/Newsletter";
 import { Promises } from "./components/Promises";
 import { SiteFooter } from "./components/SiteFooter";
@@ -22,7 +21,6 @@ export default function Home() {
         <DailyWardrobe />
         <VideoLookbook />
         <WearInRealLife />
-        <CustomerFeedback />
         <Newsletter />
         <Promises />
       </main>
