@@ -94,18 +94,30 @@ export function Hero() {
             </div>
           ))}
 
-          {/* Slim featured badge bottom-right */}
+          {/* Premium featured badge — bottom-right, soft pill shape */}
           <a
             href="#new"
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
-            className="group hidden lg:flex items-center gap-3 self-end bg-white/85 backdrop-blur-md rounded-sm py-2 pl-2 pr-4 hover:bg-white hover:shadow-2xl shadow-lg transition-all duration-500 w-[270px] relative overflow-hidden border border-white/40"
+            className="group hidden lg:flex items-center gap-3.5 self-end bg-white/92 backdrop-blur-xl rounded-2xl py-2.5 pl-2.5 pr-5 transition-all duration-500 w-[290px] relative overflow-hidden border border-white/70 hover:border-peony/25 hover:-translate-y-1 hover:bg-white"
+            style={{
+              boxShadow: "0 10px 30px -8px rgba(196, 136, 122, 0.18), 0 4px 14px -4px rgba(44, 36, 32, 0.1)",
+            }}
           >
-            {/* Shimmer */}
-            <span className="absolute inset-y-0 -left-1/3 w-1/3 bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-[-20deg] -translate-x-full group-hover:translate-x-[500%] transition-transform duration-[1100ms] pointer-events-none" />
+            {/* Hover lift shadow overlay */}
+            <span
+              className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+              style={{ boxShadow: "0 22px 50px -12px rgba(196, 136, 122, 0.32), 0 8px 24px -6px rgba(44, 36, 32, 0.15)" }}
+            />
 
-            {/* Image stack */}
-            <div className="relative w-12 h-14 shrink-0 overflow-hidden rounded-sm bg-petal">
+            {/* Inner soft glow ring */}
+            <span className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/40 pointer-events-none" />
+
+            {/* Shimmer sweep on hover */}
+            <span className="absolute inset-y-0 -left-1/3 w-1/3 bg-gradient-to-r from-transparent via-white/55 to-transparent skew-x-[-20deg] -translate-x-full group-hover:translate-x-[500%] transition-transform duration-[1200ms] pointer-events-none" />
+
+            {/* Image stack — rounded to match outer pill */}
+            <div className="relative w-12 h-14 shrink-0 overflow-hidden rounded-xl bg-petal">
               {featured.map((f, i) => (
                 <div
                   key={i}
@@ -116,10 +128,12 @@ export function Hero() {
                   <FadeImage src={f.image} alt={f.name} fill sizes="48px" className="object-cover" />
                 </div>
               ))}
+              {/* Subtle inner border on image */}
+              <span className="absolute inset-0 rounded-xl ring-1 ring-inset ring-charcoal/5 pointer-events-none" />
             </div>
 
             {/* Info stack */}
-            <div className="relative flex-1 min-w-0 h-[52px]">
+            <div className="relative flex-1 min-w-0 h-[54px]">
               {featured.map((f, i) => (
                 <div
                   key={i}
@@ -127,15 +141,15 @@ export function Hero() {
                     i === featIdx ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1 pointer-events-none"
                   }`}
                 >
-                  <p className="text-[9px] tracking-[0.2em] uppercase text-peony mb-0.5 font-medium">{f.badge}</p>
-                  <p className="text-[12px] font-medium text-charcoal leading-tight truncate">{f.name}</p>
-                  <p className="text-[12px] text-peony font-semibold mt-0.5">{fmt(f.price)}</p>
+                  <p className="text-[9px] tracking-[0.22em] uppercase text-peony mb-0.5 font-semibold">{f.badge}</p>
+                  <p className="text-[12.5px] font-medium text-charcoal leading-tight truncate">{f.name}</p>
+                  <p className="text-[12.5px] text-peony font-semibold mt-0.5">{fmt(f.price)}</p>
                 </div>
               ))}
             </div>
 
-            {/* Dots */}
-            <div className="absolute bottom-1 right-3 flex gap-1">
+            {/* Dots — softer */}
+            <div className="absolute bottom-1.5 right-4 flex gap-1">
               {featured.map((_, i) => (
                 <span
                   key={i}
